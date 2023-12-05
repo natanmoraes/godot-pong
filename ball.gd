@@ -1,20 +1,20 @@
 extends CharacterBody2D
 
 var SPEED = 300.0
-var direction = Vector2.ZERO
-
+signal left_field
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	direction.x = [1,-1].pick_random()
-	direction.y = [1,-1].pick_random()
+	velocity.x = [1,-1].pick_random()
+	velocity.y = [1,-1].pick_random()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var collision = move_and_collide(direction)
+	var collision = move_and_collide(velocity * delta * SPEED)
 	if (collision):
-		var object = collision.get_collider()
-		
+		velocity = velocity.bounce(collision.get_normal())
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	pass # Replace with function body.
+	print("Ball left field: " + str(position))
+	emit_signal("left_field", position)
+	queue_free()
