@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuvvuhkxjod33"]
+
+[ext_resource type="PackedScene" uid="uid://b6yb117f2b1hj" path="res://ui.tscn" id="1_e8r7e"]
+[ext_resource type="PackedScene" uid="uid://c5mif5j466o7w" path="res://player.tscn" id="2_06kmj"]
+[ext_resource type="PackedScene" uid="uid://3fnk0x02x3sv" path="res://wall.tscn" id="3_va4pa"]
+[ext_resource type="PackedScene" uid="uid://bbua6ndqi5jjo" path="res://player2.tscn" id="3_vta2k"]
+[ext_resource type="PackedScene" uid="uid://lvmg5o0xfx62" path="res://ball.tscn" id="4_0m7yw"]
+
+[node name="Game" type="Node2D"]
+
+[node name="UI" parent="." instance=ExtResource("1_e8r7e")]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Player1" parent="World" instance=ExtResource("2_06kmj")]
+position = Vector2(100, 288)
+
+[node name="Player2" parent="World" instance=ExtResource("3_vta2k")]
+position = Vector2(1000, 288)
+
+[node name="Ball" parent="World" instance=ExtResource("4_0m7yw")]
+
+[node name="WallTop" parent="World" instance=ExtResource("3_va4pa")]
+position = Vector2(550, 50)
+
+[node name="WallBottom" parent="World" instance=ExtResource("3_va4pa")]
+position = Vector2(550, 550)
