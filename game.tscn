@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuvvuhkxjod33"]
+[gd_scene load_steps=8 format=3 uid="uid://cuvvuhkxjod33"]
 
 [ext_resource type="PackedScene" uid="uid://b6yb117f2b1hj" path="res://ui.tscn" id="1_e8r7e"]
 [ext_resource type="Script" path="res://game.gd" id="1_puomr"]
 [ext_resource type="PackedScene" uid="uid://c5mif5j466o7w" path="res://player.tscn" id="2_06kmj"]
+[ext_resource type="Script" path="res://World.gd" id="3_l12af"]
 [ext_resource type="PackedScene" uid="uid://3fnk0x02x3sv" path="res://wall.tscn" id="3_va4pa"]
 [ext_resource type="PackedScene" uid="uid://bbua6ndqi5jjo" path="res://player2.tscn" id="3_vta2k"]
 [ext_resource type="PackedScene" uid="uid://lvmg5o0xfx62" path="res://ball.tscn" id="4_0m7yw"]
@@ -13,6 +14,8 @@ script = ExtResource("1_puomr")
 [node name="UI" parent="." instance=ExtResource("1_e8r7e")]
 
 [node name="World" type="Node2D" parent="."]
+script = ExtResource("3_l12af")
+ball_scene = ExtResource("4_0m7yw")
 
 [node name="Player1" parent="World" instance=ExtResource("2_06kmj")]
 position = Vector2(100, 288)
@@ -28,4 +31,6 @@ position = Vector2(550, 50)
 [node name="WallBottom" parent="World" instance=ExtResource("3_va4pa")]
 position = Vector2(550, 550)
 
+[connection signal="player_scored" from="World" to="." method="_on_world_player_scored"]
 [connection signal="left_field" from="World/Ball" to="." method="_on_ball_left_field"]
+[connection signal="left_field" from="World/Ball" to="World" method="_on_ball_left_field"]

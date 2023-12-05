@@ -12,13 +12,11 @@ func _ready():
 func _process(delta):
 	pass
 
-func _on_ball_left_field(ballPosition: Vector2):
-	if (ballPosition.x <= 0):
-		p2_score += 1
-	else:
+func _on_world_player_scored(who_scored):
+	if (who_scored == "p1"):
 		p1_score += 1
+	else:
+		p2_score += 1
 		
-	update_scores()
-	
-func update_scores():
+	print("Updating scores " + str(p1_score) + "|" + str(p2_score))
 	ui.update_scores(p1_score, p2_score)
