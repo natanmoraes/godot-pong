@@ -2,6 +2,8 @@ extends Node2D
 
 @export var ball_scene: PackedScene
 signal player_scored
+@onready var ball_left_field = $ballLeftField
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,6 +15,7 @@ func _process(delta):
 	pass
 
 func _on_ball_left_field(ballPosition: Vector2):
+	ball_left_field.play()
 	var who_scored = calculate_who_scored(ballPosition)
 	emit_signal("player_scored", who_scored)
 	spawn_ball()

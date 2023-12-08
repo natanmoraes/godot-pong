@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cuvvuhkxjod33"]
+[gd_scene load_steps=9 format=3 uid="uid://cuvvuhkxjod33"]
 
 [ext_resource type="PackedScene" uid="uid://b6yb117f2b1hj" path="res://ui.tscn" id="1_e8r7e"]
 [ext_resource type="Script" path="res://game.gd" id="1_puomr"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://3fnk0x02x3sv" path="res://wall.tscn" id="3_va4pa"]
 [ext_resource type="PackedScene" uid="uid://bbua6ndqi5jjo" path="res://player2.tscn" id="3_vta2k"]
 [ext_resource type="PackedScene" uid="uid://lvmg5o0xfx62" path="res://ball.tscn" id="4_0m7yw"]
+[ext_resource type="AudioStream" uid="uid://htsmqngfdt03" path="res://ball-left-field.wav" id="8_beyfk"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_puomr")
@@ -30,6 +31,9 @@ position = Vector2(550, 50)
 
 [node name="WallBottom" parent="World" instance=ExtResource("3_va4pa")]
 position = Vector2(550, 550)
+
+[node name="ballLeftField" type="AudioStreamPlayer2D" parent="World"]
+stream = ExtResource("8_beyfk")
 
 [connection signal="player_scored" from="World" to="." method="_on_world_player_scored"]
 [connection signal="left_field" from="World/Ball" to="." method="_on_ball_left_field"]
